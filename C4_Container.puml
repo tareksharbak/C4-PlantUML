@@ -3,6 +3,7 @@
 
 !define PERSON_BG_COLOR #08427B
 !define CONTAINER_BG_COLOR #438DD5
+!define DATABASE_BG_COLOR #2441E2
 !define SYSTEM_BG_COLOR #999999
 !define ELEMENT_FONT_COLOR #FFFFFF
 
@@ -26,9 +27,9 @@ skinparam Arrow {
     FontSize 12
 }
 
-skinparam rectangle<<person>> {
+skinparam actor<<person>> {
     StereotypeFontColor ELEMENT_FONT_COLOR
-    FontColor ELEMENT_FONT_COLOR
+    'FontColor ELEMENT_FONT_COLOR
     BackgroundColor PERSON_BG_COLOR
     BorderColor #073B6F
 }
@@ -38,6 +39,13 @@ skinparam rectangle<<container>> {
     FontColor ELEMENT_FONT_COLOR
     BackgroundColor CONTAINER_BG_COLOR
     BorderColor #3C7FC0
+}
+
+skinparam database<<database>> {
+    StereotypeFontColor ELEMENT_FONT_COLOR
+    FontColor ELEMENT_FONT_COLOR
+    BackgroundColor DATABASE_BG_COLOR
+    BorderColor #073B6F
 }
 
 skinparam rectangle<<system>> {
@@ -69,6 +77,7 @@ legend right
 |=              |= Type |
 |<PERSON_BG_COLOR>      | person |
 |<CONTAINER_BG_COLOR>   | container |
+|<DATABASE_BG_COLOR>    | database |
 |<SYSTEM_BG_COLOR>      | external system |
 endlegend
 !enddefinelong
@@ -79,11 +88,14 @@ endlegend
 ' Elements
 ' ##################################
 
-!define Person(e_alias, e_label) rectangle "==e_label" <<person>> as e_alias
-!define Person(e_alias, e_label, e_descr) rectangle "==e_label\n\n e_descr" <<person>> as e_alias
+!define Person(e_alias, e_label) actor "==e_label" <<person>> as e_alias
+!define Person(e_alias, e_label, e_descr) actor "==e_label\n e_descr" <<person>> as e_alias
 
 !define Container(e_alias, e_label, e_techn) rectangle "==e_label\n//<size:TECHN_FONT_SIZE>[e_techn]</size>//" <<container>> as e_alias
 !define Container(e_alias, e_label, e_techn, e_descr) rectangle "==e_label\n//<size:TECHN_FONT_SIZE>[e_techn]</size>//\n\n e_descr" <<container>> as e_alias
+
+!define Database(e_alias, e_label, e_techn) database "==e_label\n//<size:TECHN_FONT_SIZE>[e_techn]</size>//" <<database>> as e_alias
+!define Database(e_alias, e_label, e_techn, e_descr) database "==e_label\n//<size:TECHN_FONT_SIZE>[e_techn]</size>//\n\n e_descr" <<database>> as e_alias
 
 !define System(e_alias, e_label) rectangle "==e_label" <<system>> as e_alias
 !define System(e_alias, e_label, e_descr) rectangle "==e_label\n\n e_descr" <<system>> as e_alias
